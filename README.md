@@ -16,6 +16,7 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 * [适用场景](#适用场景)
 * [试用](#试用)
 * [系统架构](#系统架构)
+    * [后端](#后端)
 * [问题反馈](#问题反馈)
 * [相关资源入口](#相关资源入口)
 
@@ -34,6 +35,45 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 * 商业客服
 
 # 系统架构
+
+## 后端
+
+* 2.0 版本架构图
+
+(暂缺)
+
+* 部件列表(详细的内容请参考[这里](https://github.com/startalkIM/ejabberd/blob/master/README.md#startalk-%E6%A8%A1%E5%9D%97)):
+    * ejabberd
+
+IM核心组件，负责维持与客户端的长连接和消息路由
+
+    * or
+
+IM负载均衡组件，负责验证客户端身份，以及转发http请求到对应的后台服务
+
+    * im_http_service
+
+IM HTTP接口服务，负责IM相关数据的查询、设置以及历史消息同步(基于tomcat的java服务)
+
+    * qfproxy
+
+IM文件服务，负责文件的上传和下载(基于tomcat的java服务)
+
+    * push_service
+
+IM的push服务，用于离线消息的推送(基于tomcat的java服务)
+
+    * qtalk_serach
+
+提供远程搜索人员和群的服务
+
+    * redis
+
+IM缓存服务
+
+    postgresql
+
+
 
 # 试用
 

@@ -105,8 +105,8 @@ IM缓存服务
 
 我们推荐的试用分为两个方向：
 
-* 公共域注册登录
-* docker部署
+* 注册公共域试用
+* docker部署试用
 
 ## 如何理解客户端的导航按钮/界面
 
@@ -159,13 +159,17 @@ docker 可以在Windows上起服务，这使得很多用户可以直接在window
 这里是[地址](https://github.com/startalkIM/startalk-docker)
 
 
-# 生成用户
+# 生成/变更用户
 
-+ `密码规则参照[密码规则](https://github.com/startalkIM/ejabberd/wiki/%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99)`
+[原始文档](https://github.com/startalkIM/ejabberd/wiki/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86)
 
-+ `user_id规则：只能包含小写字母、数字、_、-、.，建议使用用户中文名的拼音当作user_id。`
++ 密码规则: 参照[密码规则](https://github.com/startalkIM/ejabberd/wiki/%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99)
 
-+ `当插入新用户或者修改个人信息的时候，host_users需要把version变成max(version)+1,vcard_version需要把version=version + 1`
++ user_id规则：只能包含小写字母、数字、_、-、.，建议使用用户中文名的拼音当作user_id。
+
++ 每次变更完信息之后，需要：
+    * host_users需要把version变成max(version) + 1
+    * vcard_version需要把version=version + 1
 
 ```
 插入用户

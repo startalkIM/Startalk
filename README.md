@@ -38,32 +38,42 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 
 ## 后端
 
-* 2.0 版本架构图
+### 2.0 版本架构图
 
 (暂缺)
 
-* 部件列表(详细和原始的内容请参考[这里](https://github.com/startalkIM/ejabberd/blob/master/README.md#startalk-%E6%A8%A1%E5%9D%97)):
-    + [ejabberd](https://github.com/startalkIM/ejabberd) (erlang)
+### 部件列表(详细和原始的内容请参考[这里](https://github.com/startalkIM/ejabberd/blob/master/README.md#startalk-%E6%A8%A1%E5%9D%97)):
+
++ [ejabberd](https://github.com/startalkIM/ejabberd) (erlang)
 
 IM核心组件，负责维持与客户端的长连接和消息路由
-    + [openresty 组件](https://github.com/startalkIM/openresty_ng)(LUA)
+
++ [openresty 组件](https://github.com/startalkIM/openresty_ng)(LUA)
 
 IM负载均衡组件，负责验证客户端身份，以及转发http请求到对应的后台服务
-    + [im_http_service](https://github.com/startalkIM/im_http_service) (JAVA服务)
+
++ [im_http_service](https://github.com/startalkIM/im_http_service) (JAVA服务)
 
 IM HTTP接口服务，负责IM相关数据的查询、设置以及历史消息同步(基于tomcat的java服务)
-    + [qfproxy](https://github.com/startalkIM/qfproxy)(JAVA服务)
+
++ [qfproxy](https://github.com/startalkIM/qfproxy)(JAVA服务)
 
 IM文件服务，负责文件的上传和下载(基于tomcat的java服务)(JAVA服务)
-    + [push_service](https://github.com/startalkIM/push_service)(JAVA服务)
+
++ [push_service](https://github.com/startalkIM/push_service)(JAVA服务)
 
 IM的push服务，用于离线消息的推送(基于tomcat的java服务)(JAVA服务)
-    + [search_serivce](https://github.com/startalkIM/search)(JAVA服务)
-    
+
++ [search_serivce](https://github.com/startalkIM/search)(JAVA服务)
+
 提供远程搜索好友、群、聊天记录的服务
-    + redis
+
++ redis
+
 IM缓存服务
-    + postgresql
+
++ postgresql
+
  数据持久化服务   
 
 

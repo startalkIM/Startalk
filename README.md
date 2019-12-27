@@ -12,7 +12,7 @@ startalk主攻 toB 场景。Startalk的目标是想解决企业在近20年的时
 本文将分几个部分介绍这套系统，以及系统能给用户带来的价值。
 
 * [适用场景](#适用场景)
-* [试用&演练](#试用&演练)
+* [试用](#试用)
 * [系统架构](#系统架构)
 * [问题反馈](#问题反馈)
 * [相关资源入口](#相关资源入口)
@@ -28,12 +28,12 @@ startalk主攻 toB 场景。Startalk的目标是想解决企业在近20年的时
 
 * 企业办公OA
 * 企业应用整合
-* 企业自有业务支撑
-* 
+* SDK嵌入(企业自有业务支撑)
+* 商业客服
 
 ## 系统架构
 
-## 试用&演练
+## 试用
 
 我们推荐大家做私有化部署。
 
@@ -45,6 +45,20 @@ startalk主攻 toB 场景。Startalk的目标是想解决企业在近20年的时
 
 * 公共域注册登录
 * docker部署
+
+
+#### 提前准备
+
+* 客户端
+    * iOS客户端 (暂缺，审核中)
+    * [Android客户端](https://i.startalk.im/home/#/download)
+    * [PC客户端 32bit](https://i.startalk.im/pubapi/soft/download/StarTalk_x86.exe)  (推荐)
+    * [PC客户端 64bit](https://i.startalk.im/pubapi/soft/download/StarTalk_x64.exe)  (推荐)
+    * [Mac客户端](https://i.startalk.im/pubapi/soft/download/StarTalk.dmg)
+    * linux 客户端
+    * Web 客户端
+* 后端
+    * 下载/安装 Docker
 
 ### 公共域注册登录
 
@@ -61,10 +75,10 @@ startalk主攻 toB 场景。Startalk的目标是想解决企业在近20年的时
 ### docker部署
 这是我们目前推荐的方式。
 
+#### 下载Docker
 docker 可以在Windows上起服务，这使得很多用户可以直接在windows上尝试到startalk的功能。
 
 这里是[地址](https://github.com/startalkIM/startalk-docker)
-
 
 ## 问题反馈
 

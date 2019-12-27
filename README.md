@@ -15,10 +15,12 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 
 * [适用场景](#适用场景)
 * [试用](#试用)
+    * 生成用户(#生成用户)
 * [系统架构](#系统架构)
     * [后端](#后端)
     * [PC端](#PC端)
     * [iOS端](#iOS端)
+* [常见问题](#常见问题)    
 * [问题反馈](#问题反馈)
 * [相关资源入口](#相关资源入口)
 
@@ -156,7 +158,54 @@ docker 可以在Windows上起服务，这使得很多用户可以直接在window
 
 这里是[地址](https://github.com/startalkIM/startalk-docker)
 
-# 问题反馈
+
+## 生成用户
+
+
+```
+插入用户
+insert into host_users (host_id, user_id, user_name, department, dep1, pinyin, frozen_flag, version, user_type, hire_flag, gender, password, initialpwd, pwd_salt, ps_deptid) values ('1', 'file-transfer', '文件传输助手', '/智能服务助手', '智能服务助手', 'file-transfer', '1', '1', 'U', '1', '1', 'CRY:fd540f073cc09aa98220bbb234153bd5', '1', 'qtalkadmin_pwd_salt_d2bf42081aab47f4ac00697d7dd32993', 'qtalk');
+
+插入名片
+insert into vcard_version (username, version, profile_version, gender, host, url) values ('file-transfer', '1', '1', '1', 'qtalk', '/file/v2/download/avatar/new/daa8a007ae74eb307856a175a392b5e1.png?name=daa8a007ae74eb307856a175a392b5e1.png&file=file/daa8a007ae74eb307856a175a392b5e1.png&fileName=file/daa8a007ae74eb307856a175a392b5e1.png');
+```
+数据字典
+
+```
+host_users:
+序号	字段名称	        字段描述	                        字段类型	
+1	host_id	        域信息id	                        bigint
+2	user_id	        用户名	                        text
+3	user_name	中文名	                        text
+4	department	组织架构	                        text
+5	tel	        电话	                        text
+6	email	        邮箱	                        text
+7	dep1	        一级部门                         text
+8	dep2	        二级部门                         text
+9	dep3	        三级部门                         text
+10	dep4	        四级部门	                        text
+11	dep5	        五级部门	                        text
+12	pinyin	        拼音	                        text
+13	frozen_flag	禁止标志	                        smallint
+14	version	        版本号	                        integer
+15	user_type	用户类型（U）	                character
+16	hire_flag	在职标志	                        smallint
+17	gender	        性别,1（男）2（女）0（未知）       smallint
+18	password	密码	                        text
+19	initialpwd	是否是初始密码，1（是）0（否）	smallint
+20	ps_deptid	根级组织名字	                text
+21      pwd_salt        密码盐值                         character varying(200)
+```
+
+`user_id的规则是：只能包含小写字母、数字、_、-、.，建议使用用户中文名的拼音当作user_id。`
+
+密码规则参照[密码规则](https://github.com/startalkIM/ejabberd/wiki/%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99)
+
+当插入新用户或者修改个人信息的时候，host_users需要把version变成max(version)+1,vcard_version需要把version=version + 1
+
+## 常见问题
+
+
 
 # 相关资源入口
 

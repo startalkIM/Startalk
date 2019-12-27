@@ -17,6 +17,8 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 * [试用](#试用)
 * [系统架构](#系统架构)
     * [后端](#后端)
+    * [PC端](#PC端)
+    * [iOS端](#iOS端)
 * [问题反馈](#问题反馈)
 * [相关资源入口](#相关资源入口)
 
@@ -77,6 +79,19 @@ IM缓存服务
  数据持久化服务   
 
 
+ ## PC端
+
+ (建设中)
+
+ ## iOS端
+
+ (建设中)
+
+## Android端
+
+(建设中)
+
+
 
 # 试用
 
@@ -113,6 +128,13 @@ IM缓存服务
     * Web 客户端
 * 后端
     * 下载/安装 Docker
+        * [Windows版本](https://docs.docker.com/docker-for-windows/install/)
+        * [Mac版本](https://docs.docker.com/docker-for-mac/install/)
+        * [Ubuntu版本](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+        * [Centos版本](https://docs.docker.com/install/linux/docker-ce/centos/)
+        * [Debian版本](https://docs.docker.com/install/linux/docker-ce/debian/)
+        * [其他Linux发行版](https://docs.docker.com/install/linux/docker-ce/binaries/)
+
 
 ## 公共域注册登录
 

@@ -163,18 +163,18 @@ Docker 可以在Windows上起服务，这使得很多用户可以直接在window
 
 ## 下载Docker
 
-下载/安装 Docker
-        * [Windows版本](https://docs.docker.com/docker-for-windows/install/)
-        * [Mac版本](https://docs.docker.com/docker-for-mac/install/)
-        * [Ubuntu版本](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-        * [Centos版本](https://docs.docker.com/install/linux/docker-ce/centos/)
-        * [Debian版本](https://docs.docker.com/install/linux/docker-ce/debian/)
-        * [其他Linux发行版](https://docs.docker.com/install/linux/docker-ce/binaries/)
++ 下载/安装 Docker
+    * [Windows版本](https://docs.docker.com/docker-for-windows/install/)
+    * [Mac版本](https://docs.docker.com/docker-for-mac/install/)
+    * [Ubuntu版本](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+    * [Centos版本](https://docs.docker.com/install/linux/docker-ce/centos/)
+    * [Debian版本](https://docs.docker.com/install/linux/docker-ce/debian/)
+    * [其他Linux发行版](https://docs.docker.com/install/linux/docker-ce/binaries/)
 
 ## 部署Docker
 
 ### 安装步骤
-+ 获取资源[文件](http://150.242.184.16/startalk_docker.zip)  并解压 
++ 获取资源[文件](http://150.242.184.16/startalk_docker.zip)  并解压:
 ```
 wget http://150.242.184.16/startalk_docker.zip
 ```
@@ -186,13 +186,14 @@ unzip -x permfile.zip
 ```
 docker load < startalk_docker/images/startalk_docker.tar
 ```
-+ 创建volume
++ 创建 Volume
+> 为什么要创建volume?
+> 
+> 简单来说，Docker环境在虚拟机下无法保存数据。你需要用你的宿主机来保存这些文件，比如日志，比如图片，比如聊天记录。
 ```
 docker volume create startalkpgdata
 ```
-> 为什么要创建volume?
-> 
-> 简单来说，Docker环境无法保存数据。你需要用你的宿主机来保存这些文件，比如日志，比如图片，比如聊天记录。
+
 + 获取 docker image id
 ```
 docker images

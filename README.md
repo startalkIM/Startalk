@@ -174,17 +174,39 @@ Docker 可以在Windows上起服务，这使得很多用户可以直接在window
 ## 部署Docker
 
 ### 安装步骤
-+ 获取资源[文件](http://150.242.184.16/startalk_docker.zip)  并解压:
++ 获取资源[文件](https://i.startalk.im/pubapi/soft/download/startalk_docker.zip)  并解压:
 ```
-wget http://150.242.184.16/startalk_docker.zip
+wget https://i.startalk.im/pubapi/soft/download/startalk_docker.zip
 ```
 + 解压文件
 ```
+unzip -x startalk_docker.zip
+```
+得到：
+```
+-rw-r--r--. 1 root root 1.3K 12月 10 2019 Dockerfile
+drwxr-xr-x. 2 root root   33 12月 11 2019 images
+-rw-------. 1 root root  22M 12月 10 2019 permfile.zip
+-rw-r--r--. 1 root root 1.9K 12月 11 2019 README.md
+-rw-r--r--. 1 root root  93K 12月 10 2019 success.png
+
+```
+之后再解压：
+```
 unzip -x permfile.zip
+```
+得到:
+```
+-rw-r--r--. 1 root root 1.3K 12月 10 2019 Dockerfile
+drwxr-xr-x. 2 root root   33 12月 11 2019 images
+drwxr-xr-x. 6 root root   57 12月  9 2019 permfile
+-rw-------. 1 root root  22M 12月 10 2019 permfile.zip
+-rw-r--r--. 1 root root 1.9K 12月 11 2019 README.md
+-rw-r--r--. 1 root root  93K 12月 10 2019 success.png
 ```
 + 用docker加载镜像
 ```
-docker load < startalk_docker/images/startalk_docker.tar
+docker load < images/startalk_docker.tar
 ```
 + 创建 Volume
 > 为什么要创建volume?
@@ -197,19 +219,34 @@ docker volume create startalkpgdata
 + 获取 docker image id
 ```
 docker images
+回车
+然后，在结果中复制SIZE最大的那一列对应的IMAGE ID
 ``` 
+
 + 启动镜像 
 > 需要提前准备：
-> * 宿主机的IP (下文中的hosturl)
+> * 自己宿主机的IP (下文中的hosturl)
 > * 上一步获得的docker image id (下文中的镜像id)
 
 * liunx 用户使用：
 ```
-docker run  -v startalk_docker/permfile:/startalk/permfile -p 8080:8080 -p 5202:5202 -e hosturl="机器ip"  镜像id(可由第4步获得)
+假设:
+permfile 全路径为 /home/xxx/permfile
+宿主机IP是 192.168.0.1
+docker image id 是 1e977139e6ba
+
+那么直接运行：
+docker run  -v /home/xxx/permfile:/startalk/permfile -p 8080:8080 -p 5202:5202 -e hosturl="192.168.0.1"  1e977139e6ba
 ```
 * Windows 用户使用：
 ```
-docker run  -v startalk_docker/permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8080:8080 -p 5202:5202 -e hosturl="机器ip"  镜像id(可由第4步或得)
+
+假设:
+宿主机IP是 192.168.0.1
+docker image id 是 1e977139e6ba
+
+那么直接运行：
+docker run  -v permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8080:8080 -p 5202:5202 -e hosturl="192.168.0.1"  1e977139e6ba
 ```
 
 注意：

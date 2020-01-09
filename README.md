@@ -337,7 +337,7 @@ permfile 全路径为 /home/xxx/permfile
 docker image id 是 1e977139e6ba
 
 那么直接运行：
-docker run  -v /home/xxx/permfile:/startalk/permfile -p 8080:8080 -p 5202:5202 -e hosturl="192.168.0.1"  1e977139e6ba
+docker run  -v /home/xxx/permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8080:8080 -p 5202:5202 -e hosturl="192.168.0.1"  1e977139e6ba
 ```
 
 **注意，Docker当前版本必须使用全路径加载permfile,否则可能大概率启动失败**

@@ -16,8 +16,10 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 * [系统特性](#系统特性)
 * [适用场景](#适用场景)    
 * [试用](#试用)
+    * [一键安装包](#一键包)
     * [部署Docker](#docker部署)
     * [生成用户](#生成/变更用户)
+    * [下载客户端](#获取客户端)
 * [系统架构](#系统架构)
     * [功能组件列表](#功能组件列表)
     * [后端](#后端)
@@ -42,14 +44,14 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
 
 # 系统特性
 
-IM系统本身很复杂。投入产出比不高。常见的开源方案大多以实现功能为主。
+IM系统本身很复杂。投入产出比不高。常见的开源方案的目标并不是性能和稳定性，大多以实现功能为主。
 
 星语Startalk主要针对底层实现进行了较长时间的积累和沉淀。 这个也契合了[我们的口号](#口号)
 
 谈到系统特性，主要围绕以下几个方面展开：
 
 * [安全性](#安全性)
-* [性能](#性能)
+* [性能](#性能/扩展性)
 * [纯native实现，全平台支持](#全平台支持)
 * [支持自建应用嵌入](#自建应用)
 
@@ -256,6 +258,11 @@ IM缓存服务
     * [Mac客户端](https://i.startalk.im/pubapi/soft/download/StarTalk.dmg)
     * linux 客户端
     * Web 客户端
+# 一键包
+
+
+[https://i.startalk.im/home/#/download_easy](https://i.startalk.im/home/#/download_easy)
+
 
 # Docker部署
 Docker起测试服务是我们目前推荐的方式。
@@ -377,10 +384,10 @@ docker run  -v permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8
 那么您可以尝试暂时在公共域[入驻](https://i.startalk.im/home/#/register)了！
 
 
+# 获取客户端
+* 请在[这里](https://i.startalk.im/home/#/download)下载各平台最新版本客户端
 
-
-
-
+[[返回目录列表](#简介)]
 
 
 # 生成/变更用户

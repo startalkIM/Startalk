@@ -213,14 +213,19 @@ IM缓存服务
 
  (建设中)
 
+技术文档可以先参阅[这里](https://github.com/startalkIM/startalk_pc)
+
+
+
  ## iOS端
 
  (建设中)
+ 技术文档可以先参阅[这里](https://github.com/startalkIM/imsdk-ios)
 
 ## Android端
 
 (建设中)
-
+技术文档可以先参阅[这里](https://github.com/startalkIM/imsdk-android)
 
 
 # 试用

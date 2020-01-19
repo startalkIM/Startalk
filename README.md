@@ -3,23 +3,49 @@ Startalk 是一套开源IM系统平台。涵盖了所有你所能想到的目标
 
 Startalk主攻 toB 场景。
 
-Startalk的目标是想解决企业在近20年的时间内没有统一的IM系统的问题。
+Startalk的目标是想解决企业在近20年的时间内没有统一的IM系统的问题:
 
 ```
 相比之下，各大操作系统经过近20年的演化，以及nginx的出现，已经让http服务变得非常简单了。
 ```
 
+简单来说，我们的优点很明显:
+
+```
+第一，性能、稳定性以及平台适应性可以算是业界最好的，理论上支持所有平台
+第二，公开了几乎全部的代码
+第三，团队仍旧在持续迭代
+```
+
+缺点也有：
+
+```
+1. 系统很庞大和复杂
+2. 涉及到的技术栈面很广，通常情况下您需要先想好自己要做什么，想实现什么功能，以及需要哪方面帮助
+```
+
+
 之前写过一篇介绍。本篇希望在叙述上更针对典型用户的需求，如果对上一个版本的介绍文档感兴趣，可以看看[这里](https://github.com/startalkIM/startalk_backup)。
 
-本文将分几个部分介绍这套系统，以及系统能给用户带来的价值。
+### 本文的目录
+
 * [我们的口号](#口号)
 * [系统特性](#系统特性)
 * [适用场景](#适用场景)    
-* [试用](#试用)
-    * [一键安装包](#一键包)
-    * [部署Docker](#docker部署)
-    * [生成用户](#生成/变更用户)
-    * [下载客户端](#获取客户端)
+* [开始试用(需要3个大步骤)](#试用)
+    1. 部署后台基础功能(三选一)
+        * [通过一键安装包安装后台](#一键包)
+        * [通过部署Docker安装后台](#docker部署)
+        * [使用源码通过文档部署](source-build.md)
+    1. 生成用户
+        * [生成用户](#生成/变更用户)
+    1. 部署客户端 
+        * [下载客户端](#获取客户端)
+    1. [部署音视频]()
+    1. [部署红包、AA]()
+* [二次开发](sdk-introduction.md)
+* [商业客服 Saas]()
+* 
 * [系统架构](#系统架构)
     * [功能组件列表](#功能组件列表)
     * [后端](#后端)
@@ -397,24 +423,32 @@ docker run  -v permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8
 
 # 生成/变更用户
 
-[原始文档](https://github.com/startalkIM/ejabberd/wiki/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86)
+这个部分是后来写的。如有需要，请参见 [原始文档](https://github.com/startalkIM/ejabberd/wiki/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86)
 
-+ 密码规则: 参照[密码规则](https://github.com/startalkIM/ejabberd/wiki/%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99)
+当前startalk生成用户的部分主要是通过执行sql，在后台生成，目的是扩展性。
 
-+ user_id规则：只能包含小写字母、数字、_、-、.，建议使用用户中文名的拼音当作user_id。
+需要手动生成用户，首先要明确几个问题：
 
-+ 每次变更完信息之后，需要：
+
++ startalk后台使用秘文密码。密码规则: 参照[密码规则](https://github.com/startalkIM/ejabberd/wiki/%E5%AF%86%E7%A0%81%E7%94%9F%E6%88%90%E8%A7%84%E5%88%99)
+
++ 用户id (大部分文档中会称之为user_id)生成规则：只能包含小写字母、数字、_、-、.，建议使用用户中文名的拼音当作user_id。
+
++ 为了让变更生效，在变更完信息后，需要：
     * host_users需要把version变成max(version) + 1
     * vcard_version需要把version=version + 1
 
-```
-插入用户
-insert into host_users (host_id, user_id, user_name, department, dep1, pinyin, frozen_flag, version, user_type, hire_flag, gender, password, initialpwd, pwd_salt, ps_deptid) values ('1', 'file-transfer', '文件传输助手', '/智能服务助手', '智能服务助手', 'file-transfer', '1', '1', 'U', '1', '1', 'CRY:fd540f073cc09aa98220bbb234153bd5', '1', 'qtalkadmin_pwd_salt_d2bf42081aab47f4ac00697d7dd32993', 'qtalk');
 
-插入名片
+插入用户 (使这个人存在)
+```
+insert into host_users (host_id, user_id, user_name, department, dep1, pinyin, frozen_flag, version, user_type, hire_flag, gender, password, initialpwd, pwd_salt, ps_deptid) values ('1', 'file-transfer', '文件传输助手', '/智能服务助手', '智能服务助手', 'file-transfer', '1', '1', 'U', '1', '1', 'CRY:fd540f073cc09aa98220bbb234153bd5', '1', 'qtalkadmin_pwd_salt_d2bf42081aab47f4ac00697d7dd32993', 'qtalk');
+```
+
+插入名片 (变更这个人的信息，例如名称，头像，等)
+```
 insert into vcard_version (username, version, profile_version, gender, host, url) values ('file-transfer', '1', '1', '1', 'qtalk', '/file/v2/download/avatar/new/daa8a007ae74eb307856a175a392b5e1.png?name=daa8a007ae74eb307856a175a392b5e1.png&file=file/daa8a007ae74eb307856a175a392b5e1.png&fileName=file/daa8a007ae74eb307856a175a392b5e1.png');
 ```
-数据字典
+数据字典(db schema)
 
 ```
 host_users:

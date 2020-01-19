@@ -1,5 +1,6 @@
 [返回首页](README.md)
 
+# 本文简介
 这篇文档改自这篇[原始文档](https://github.com/startalkIM/ejabberd/blob/master/README.md)。
 
 源码级部署的目标，并不是提高成功率和易用性，而是帮助理解系统间的调用关系。
@@ -8,7 +9,8 @@
 
 本文的主要目的是帮助使用者在事实上很复杂的后台部署过程中，减少出错的可能。
 
-# 简介
+
+# 系统简介
 通信服务就是个状态机。startalk 后台包括连接保持和无状态服务两部分。
 * 状态机 使用[ejabberd](https://www.ejabberd.im/)，保证协议扩展性(MQTT,xmpp,sip)，容量扩展性和高并发。
 * 无状态服务使用java/python，尽可能使二次开发更便捷。

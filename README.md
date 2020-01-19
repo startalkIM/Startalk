@@ -36,23 +36,23 @@ Startalk的目标是想解决企业在近20年的时间内没有统一的IM系�
     * [纯native实现，全平台支持](#全平台支持)
     * [支持自建应用嵌入](#自建应用)
 * [适用场景](#适用场景)    
-* 开始试用(需要3个大步骤)
+* 开始试用(部署基础服务，3个步骤)
     1. 部署后台基础功能(三选一)
         * [通过一键安装包安装后台](#一键包)
         * [通过部署Docker安装后台](docker-file.md)
         * [使用源码通过文档部署](source-build.md)
     1. 生成注册用户
-        * [生成用户](#生成用户)
+        * [生成用户](create-user.md)
     1. 部署客户端 
-        * [下载客户端](#获取客户端)
+        * [下载客户端](config-client.md)
         * [配置客户端](config-client.md)
-* 获得扩展功能
+* 部署扩展功能
     1. [部署Push服务（推送服务）](https://github.com/startalkIM/push_service)
     1. [部署音视频](https://github.com/startalkIM/call_room_server)
     1. [部署红包、AA]()
-* [二次开发](sdk-introduction.md)
-* [商业客服 Saas]()
-* 
+* 其他需求
+    * [二次开发](sdk-introduction.md)
+    * [商业客服 Saas]()
 * [系统架构](#系统架构)
     * [功能组件列表](#功能组件列表)
     * [后端](#后端)

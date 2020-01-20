@@ -1,12 +1,12 @@
 # Introduction
-STARTALK is an open source IM system platform. It covers all the target platforms and target systems you can think of, excellent performance.
+STARTALK is an open source IM platform. It supports all the platforms and  OSs you can think of, excellent performance.
 
-Startalk focuses on the application scenarios of toB.
+Startalk focuses on the application scenarios of to Business.
 
 The goal of Startalk is, to slove the problem that enterprises do not have a unified IM platform in the past 20 years:
 
 ```
-In contrast, after more than 20 years of evolution in major operation systems,with the advent of nginx, deploying a set of http services has become very simple.
+The similar is, after more than 20 years of evolution in major operation systems,with the advent of nginx, deploying a set of http services has become very simple.
 ```
 
 

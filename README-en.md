@@ -39,7 +39,7 @@ you can take a look the [previous version](https://github.com/startalkIM/startal
     * [native coding, all platform support](#Supprting)
 * Start trial(there are 3 steps for the basic services deployment)
     1. [Deploying backend services](Choose one out of three)
-        * [Use the one-click installation package]()
+        * [Use the one-click installation package](https://i.startalk.im/home/#/download_easy)
         * [by the docker](docker-file-en.md)
         * [by source code documentation](source-build-en.md)
     1. [User registration](create-user-en.md)

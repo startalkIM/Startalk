@@ -34,7 +34,7 @@ you can take a look the [previous version](https://github.com/startalkIM/startal
 
 * [Our slogan!](#Slogan)
 * [Platform features](#Features)
-    * [Security](#security)
+    * [Security](#Security)
     * [Performance and characteristics](#Performance)
     * [native coding, all platform support](#Supprting)
 * Start trial(there are 3 steps for the basic services deployment)
@@ -59,3 +59,39 @@ Even if not a milestone, at least be a paving stone!
 ```
 
 
+# Features
+
+The characteristics of the platform are relected in the following aspects:
+
+## Security
+
+* private protocol
+
+```
+Startalk's communication protocol is private,
+so the complexity and difficulty of eavesdropping during transamission
+are increased.
+```
+
+* Binary protocol
+
+```
+Different from common text protocols(such as xmpp, sip, http, etc.), Startalk's protocol is binary.
+it also increases the complexity and diffculty of being intercepted during transmission.
+```
+
+* TCP with TLS, end-to-end encryption supported
+
+* You have more than just the front-end, event the back-end.
+
+## Performance
+
+### back-end
+* Easily to support millions of users online, easily to support expansion
+
+### front-end
+
+* Power saving on mobile, up to 90%
+* Data saving on mobile, up to 90%
+* Never miss a message
+* Even with a lot of messages, it is still very smooth

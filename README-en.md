@@ -31,3 +31,31 @@ you can take a look the [previous version](https://github.com/startalkIM/startal
 
 
 ### Contents
+
+* [Our slogan!](#Slogan)
+* [Platform features](#Features)
+    * [Security](#security)
+    * [Performance and characteristics](#Performance)
+    * [native coding, all platform support](#Supprting)
+* Start trial(there are 3 steps for the basic services deployment)
+    1. [Deploying backend services](Choose one out of three)
+        * [Use the one-click installation package]()
+        * [by the docker](docker-file-en.md)
+        * [by source code documentation](source-build-en.md)
+    1. [User registration](create-user-en.md)
+    1. Client side Deployment
+        * [Download](config-client-en.md)
+        * [Configuration](config-client-en.md)
+* Extensions
+    1. [Notification Services(Push Services)](https://github.com/startalkIM/push_service)
+    1. [audio and video call](https://github.com/startalkIM/call_room_server)
+    1. [Red envelope, AA Pay(under construction)]()
+
+
+# Slogan
+
+```
+Even if not a milestone, at least be a paving stone!
+```
+
+

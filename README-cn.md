@@ -201,7 +201,7 @@ Startalk 由以下客户端组成：
 
 # SDK嵌入
 
-*IOS sdk嵌入：
+* IOS sdk嵌入：
 
 QIMSDK最低支持iOS9
 
@@ -233,7 +233,7 @@ QIMSDK最低支持iOS9
 2. 在项目根目录执行 `pod install`
 
 
-*Android sdk嵌入：
+* Android sdk嵌入：
 
 配置Gradle
 

@@ -231,13 +231,14 @@ Startalk 由以下客户端组成：
      2. 在项目根目录执行 `pod install`
      
     ```
- 
+  ###### [详细配置，参照Demo](https://github.com/startalkIM/imsdk-ios)
 
 
 * Android sdk嵌入：
 
 ```gradle
 配置Gradle
+
 buildscript {
     repositories {
         google()
@@ -275,6 +276,7 @@ dependencies {
 
 ```manifestPlaceholders
 配置manifestPlaceholders
+
 flavorDimensions "qim"
     //Mutiple channels
     productFlavors {
@@ -302,7 +304,9 @@ flavorDimensions "qim"
             ]
         }
     }
+	
 ```
+###### [详细配置，参照Demo](https://github.com/startalkIM/imsdk-android)
   
 * [Web嵌入]
 

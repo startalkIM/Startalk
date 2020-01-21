@@ -201,11 +201,11 @@ Startalk 由以下客户端组成：
 
 # SDK嵌入
 
-#### **IOS sdk  嵌入**：
-###### Cocoapods集成
-###### QIMSDK最低支持iOS9系统
+*IOS sdk嵌入：
 
-###### 默认依赖React-Native的CocoaPods集成
+QIMSDK最低支持iOS9
+
+默认依赖React-Native的CocoaPods集成
 
 1. 在Podfile中加入以下内容：
  
@@ -233,9 +233,9 @@ Startalk 由以下客户端组成：
 2. 在项目根目录执行 `pod install`
 
 
-#### **Android sdk  嵌入**：
+*Android sdk嵌入：
 
-###### Configure Gradle
+配置Gradle
 
 ```gradle
 buildscript {
@@ -272,7 +272,7 @@ dependencies {
   compile project(':imsdk')//compile 'com.qunar.im:sdk-im:3.0.7'
 }
 ```
-###### Deploy manifestPlaceholders
+配置manifestPlaceholders
 
 ```manifestPlaceholders
 flavorDimensions "qim"
@@ -302,11 +302,6 @@ flavorDimensions "qim"
             ]
         }
     }
-```
-###### Configure Manifest of main project
-
-```
-Please see the AndroidManifest configuration in app
 ```
   
 * [Web嵌入]

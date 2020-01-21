@@ -202,14 +202,14 @@ Startalk 由以下客户端组成：
 # SDK嵌入
 
 * IOS sdk嵌入：
-
-QIMSDK最低支持iOS9
-
-默认依赖React-Native的CocoaPods集成
-
-1. 在Podfile中加入以下内容：
  
 	```pod
+	QIMSDK最低支持iOS9
+
+	默认依赖React-Native的CocoaPods集成
+
+	1. 在Podfile中加入以下内容：
+	
         source 'https://github.com/startalkIM/libqimkit-ios-cook.git'
 
         source 'git@github.com:CocoaPods/Specs.git'
@@ -217,7 +217,6 @@ QIMSDK最低支持iOS9
     	target 'YourApp' do
     	
 	      pod 'QIMUIKit', '~> 4.0'
-
         end
  
         post_install do |installer_representation|
@@ -225,19 +224,20 @@ QIMSDK最低支持iOS9
         installer_representation.pods_project.targets.each do |target|
          target.build_configurations.each do |config|
              config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+           end
          end
        end
-     end
+     
+     2. 在项目根目录执行 `pod install`
+     
     ```
  
-2. 在项目根目录执行 `pod install`
 
 
 * Android sdk嵌入：
 
-配置Gradle
-
 ```gradle
+配置Gradle
 buildscript {
     repositories {
         google()
@@ -272,9 +272,9 @@ dependencies {
   compile project(':imsdk')//compile 'com.qunar.im:sdk-im:3.0.7'
 }
 ```
-配置manifestPlaceholders
 
 ```manifestPlaceholders
+配置manifestPlaceholders
 flavorDimensions "qim"
     //Mutiple channels
     productFlavors {

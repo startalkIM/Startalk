@@ -201,8 +201,129 @@ Startalk 由以下客户端组成：
 # SDK嵌入
 
 * [iOS嵌入]
-* [Android嵌入]
+
+#### **Android sdk  嵌入**：
+
+Configure Gradle
+--------
+```gradle
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+ 
+allprojects {
+    repositories {
+             maven { url 'https://dl.google.com/dl/android/maven2' }
+             maven {
+                 url "https://raw.githubusercontent.com/froyomu/im/master"
+             }
+             maven {
+                 url "http://developer.huawei.com/repo/"
+             }
+             jcenter {
+                 url "http://jcenter.bintray.com/"
+             }
+             maven {
+                 url "https://jitpack.io"
+             }
+             google()
+             jcenter()
+             mavenCentral()
+        }
+}
+```
+
+```gradle
+dependencies {
+  compile project(':imsdk')//compile 'com.qunar.im:sdk-im:3.0.7'
+}
+```
+Deploy manifestPlaceholders (If your own app can be deployed by any channel, please deploymanifestPlaceholders in buildTypes, or you need to deploy manifestPlaceholders in every flavor)
+--------
+
+```manifestPlaceholders
+flavorDimensions "qim"
+    //Mutiple channels
+    productFlavors {
+        //startalk
+        startalk {
+            dimension "qim"
+
+            manifestPlaceholders = [
+                    PACKAGE_NAME : "sdk.im.qunar.com.qtalksdkdemo",//Replace it with the application ID of your own project
+                    serverDoMain  : true,
+                    baiduMap :"xxxxx",//key of Baidu map (for sending location)
+                    HUAWEI_APPID : "123",//HUAWEI push
+                    OPPO_APP_ID : "123",//OPPO push
+                    OPPO_APP_KEY : "123",
+                    OPPO_APP_SECRET : "123",
+                    MIPUSH_APP_ID : "123",//XIAOMI push
+                    MIPUSH_APP_KEY : "123",
+                    MEIZU_APP_ID : "123",//MEIZU push
+                    MEIZU_APP_KEY : "123",
+                    VIVO_APP_ID : "123",//vivoo
+                    VIVO_APP_KEY : "123",
+                    SCHEME : "qtalkaphone",
+                    currentPlat  : "QTalk",
+                    MAIN_SCHEMA : "start_qtalk_activity"
+            ]
+        }
+        // QChat
+        qchat {
+            dimension "qim"
+
+            manifestPlaceholders = [
+                    PACKAGE_NAME : "sdk.im.qunar.com.qtalksdkdemo",//Replace it with the application ID of your own project
+                    serverDoMain  : false,
+                    baiduMap :"xxxxx",//key of Baidu map (for sending location)
+                    HUAWEI_APPID : "123",//HUAWEI push
+                    OPPO_APP_ID : "123",//OPPO push
+                    OPPO_APP_KEY : "123",
+                    OPPO_APP_SECRET : "123",
+                    MIPUSH_APP_ID : "123",//xiaomi push
+                    MIPUSH_APP_KEY : "123",
+                    MEIZU_APP_ID : "123",//meizu push
+                    MEIZU_APP_KEY : "123",
+                    VIVO_APP_ID : "123",//vivoo
+                    VIVO_APP_KEY : "123",
+                    SCHEME : "qchataphone",
+                    currentPlat  : "QChat",
+                    MAIN_SCHEMA : "start_qchat_activity",
+            ]
+        }
+
+    }
+```
+Configure Manifest of main project
+--------
+
+```
+Please see the AndroidManifest configuration in app
+```
+How to Use (main ports)
+--------
+First, please initialize SDK. Then configure the navigation Url and log in。
+ ```init
+  1.Initialize SDK
+  
+  QIMSdk.getInstance().init(Application application)
+  ```
+ ```config
+  2.Configure navigation Ur
+  
+  QIMSdk.getInstance().setNavigationUrl(String url)
+  ```  
+ ```login
+  3.Log in with username and password
+  
+  QIMSdk.getInstance().login(String uid,String password,LoginStatesListener loginStatesListener)
+  ```   
+  
 * [Web嵌入]
+
 
 # 商业客服
 

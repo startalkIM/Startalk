@@ -200,7 +200,38 @@ Startalk 由以下客户端组成：
 
 # SDK嵌入
 
-* [iOS嵌入]
+#### **IOS sdk  嵌入**：
+## Cocoapods集成
+###### QIMSDK最低支持iOS9系统
+
+**我们建议你通过 Cocoapods 来进行 QIMSDK 的集成**
+#### **默认依赖React-Native的CocoaPods集成**
+
+1. 在Podfile中加入以下内容：
+ 
+	```pod
+        source 'https://github.com/startalkIM/libqimkit-ios-cook.git'
+
+        source 'git@github.com:CocoaPods/Specs.git'
+		
+    	target 'YourApp' do
+    	
+	      pod 'QIMUIKit', '~> 4.0'
+
+        end
+ 
+        post_install do |installer_representation|
+ 
+        installer_representation.pods_project.targets.each do |target|
+         target.build_configurations.each do |config|
+             config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+         end
+       end
+     end
+    ```
+ 
+2. 在项目根目录执行 `pod install`
+
 
 #### **Android sdk  嵌入**：
 
@@ -241,7 +272,7 @@ dependencies {
   compile project(':imsdk')//compile 'com.qunar.im:sdk-im:3.0.7'
 }
 ```
-Deploy manifestPlaceholders (If your own app can be deployed by any channel, please deploymanifestPlaceholders in buildTypes, or you need to deploy manifestPlaceholders in every flavor)
+Deploy manifestPlaceholders
 --------
 
 ```manifestPlaceholders
@@ -271,30 +302,6 @@ flavorDimensions "qim"
                     MAIN_SCHEMA : "start_qtalk_activity"
             ]
         }
-        // QChat
-        qchat {
-            dimension "qim"
-
-            manifestPlaceholders = [
-                    PACKAGE_NAME : "sdk.im.qunar.com.qtalksdkdemo",//Replace it with the application ID of your own project
-                    serverDoMain  : false,
-                    baiduMap :"xxxxx",//key of Baidu map (for sending location)
-                    HUAWEI_APPID : "123",//HUAWEI push
-                    OPPO_APP_ID : "123",//OPPO push
-                    OPPO_APP_KEY : "123",
-                    OPPO_APP_SECRET : "123",
-                    MIPUSH_APP_ID : "123",//xiaomi push
-                    MIPUSH_APP_KEY : "123",
-                    MEIZU_APP_ID : "123",//meizu push
-                    MEIZU_APP_KEY : "123",
-                    VIVO_APP_ID : "123",//vivoo
-                    VIVO_APP_KEY : "123",
-                    SCHEME : "qchataphone",
-                    currentPlat  : "QChat",
-                    MAIN_SCHEMA : "start_qchat_activity",
-            ]
-        }
-
     }
 ```
 Configure Manifest of main project
@@ -303,24 +310,6 @@ Configure Manifest of main project
 ```
 Please see the AndroidManifest configuration in app
 ```
-How to Use (main ports)
---------
-First, please initialize SDK. Then configure the navigation Url and log in。
- ```init
-  1.Initialize SDK
-  
-  QIMSdk.getInstance().init(Application application)
-  ```
- ```config
-  2.Configure navigation Ur
-  
-  QIMSdk.getInstance().setNavigationUrl(String url)
-  ```  
- ```login
-  3.Log in with username and password
-  
-  QIMSdk.getInstance().login(String uid,String password,LoginStatesListener loginStatesListener)
-  ```   
   
 * [Web嵌入]
 

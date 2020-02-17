@@ -25,7 +25,7 @@
 
 插入用户 (使这个人存在)
 ```
-insert into host_users (host_id, user_id, user_name, department, dep1, pinyin, frozen_flag, version, user_type, hire_flag, gender, password, initialpwd, pwd_salt, ps_deptid) values ('1', 'file-transfer', '文件传输助手', '/智能服务助手', '智能服务助手', 'file-transfer', '1', '1', 'U', '1', '1', 'CRY:fd540f073cc09aa98220bbb234153bd5', '1', 'qtalkadmin_pwd_salt_d2bf42081aab47f4ac00697d7dd32993', 'qtalk');
+insert into host_users (host_id, user_id, user_name, department, dep1, pinyin, frozen_flag, version, user_type, hire_flag, gender, password, initialpwd, pwd_salt, ps_deptid) values ('1', 'file-transfer', '文件传输助手', '/智能服务助手', '智能服务助手', 'file-transfer', '0', '1', 'U', '1', '1', 'CRY:fd540f073cc09aa98220bbb234153bd5', '1', 'qtalkadmin_pwd_salt_d2bf42081aab47f4ac00697d7dd32993', 'qtalk');
 ```
 
 插入名片 (变更这个人的信息，例如名称，头像，等)
@@ -59,5 +59,9 @@ host_users:
 20	ps_deptid	根级组织名字	                text
 21      pwd_salt        密码盐值                         character varying(200)
 ```
+## 新加用户登录不上请参考如下解决方案
+1、查看host_users 中该用户的host_id是否跟admin 用户的保持一致  
+2、查看host_users 中该用户的 frozen_flag是否为0，以及hire_flag 是否为1。  
+3、查看密码生成是否正确  
 
 [返回首页](README.md#本文的目录)

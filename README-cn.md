@@ -537,6 +537,10 @@ docker run  -v permfile:/startalk/permfile -v startalkpgdata:/startalk/data -p 8
 
 [[返回目录列表](#简介)]
 
+# 配置客户端
+
+[详见这里](https://i.startalk.im/home/#/platform/access_guide/config_navs?id=config_navs)
+
 
 # 生成用户
 

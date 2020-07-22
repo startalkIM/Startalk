@@ -346,7 +346,7 @@ IM文件服务，负责文件的上传和下载(基于tomcat的java服务)(JAVA�
 
 IM的push服务，用于离线消息的推送(基于tomcat的java服务)(JAVA服务)
 
-+ [search_serivce](https://github.com/startalkIM/search)(JAVA服务)
++ [search_serivce](https://github.com/startalkIM/search)(PYTHON服务)
 
 提供远程搜索好友、群、聊天记录的服务
 

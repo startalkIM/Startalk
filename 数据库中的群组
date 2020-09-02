@@ -1,0 +1,124 @@
+在数据库中,有以下表与群有关
+                         关联列表
+ 架构模式 |           名称            |  型别  |  拥有者  
+----------+---------------------------+--------+----------
+ public   | destroy_muc_info          | 资料表 | ejabberd
+ public   | muc_last                  | 资料表 | ejabberd
+ public   | muc_registered            | 资料表 | ejabberd
+ public   | muc_room                  | 资料表 | ejabberd
+ public   | muc_room_backup           | 资料表 | ejabberd
+ public   | muc_room_history          | 资料表 | ejabberd
+ public   | muc_room_history_backup   | 资料表 | postgres
+ public   | muc_room_users            | 资料表 | ejabberd
+ public   | muc_user_mark             | 资料表 | ejabberd
+ public   | muc_vcard_info            | 资料表 | ejabberd
+ public   | user_register_mucs        | 资料表 | ejabberd
+ public   | user_register_mucs_backup | 资料表 | ejabberd
+(12 行记录)
+
+muc_room 主要是记录了群的相关设置, 比较常用的设置包含群人数上限等
+
+name       | d2b03928439549478c4391ae5772b810
+host       | conference.qtalk
+opts       | [{title,<<>>},{description,<<>>},{allow_change_subj,true},{allow_query_users,true},{allow_private_messages,false},{allow_private_messages_from_visitors,anyone},{allow_visitor_status,true},{allow_visitor_nickchange,true},{public,false},{public_list,false},{persistent,true},{moderated,true},{members_by_default,true},{members_only,false},{allow_user_invites,true},{password_protected,false},{captcha_protected,false},{password,<<>>},{anonymous,true},{logging,true},{max_users,600},{allow_voice_requests,true},{mam,false},{voice_request_min_interval,1800},{vcard,<<>>},{captcha_whitelist,[]},{affiliations,[{{<<"testuser1">>,<<"qtalk">>,<<>>},{owner,<<>>}}]},{subject,<<>>},{subject_author,<<>>},{subscribers,[]}]
+created_at | 2020-09-02 17:55:44.010197
+
+muc_room_users 常用于以群id检索群, 存储的是当前存在的群和成员, 意味着已被销毁的群或不在群内的成员将无法被检索.
+
+-[ RECORD 1 ]--+---------------------------------
+muc_name       | d2b03928439549478c4391ae5772b810
+username       | admin
+host           | qtalk
+subscribe_flag | 1
+id             | 1542633
+date           | 0
+login_date     | 1599040546
+domain         | conference.qtalk
+update_time    | 2020-09-02 17:55:46.351104+08
+
+user_register_mucs 主要存储群成员信息, 常用于以人搜群, 例如搜索某成员所有的群
+注意, 此表中存储的信息包含已被销毁的群, 如果registed_flag是0, 说明群成员曾经在群内但已被移出或退群, 也可能是该群已被销毁. 
+
+-[ RECORD 1 ]-+---------------------------------
+username      | testuser1
+muc_name      | d2b03928439549478c4391ae5772b810
+domain        | conference.qtalk
+created_at    | 2020-09-02 17:55:44.073+08
+registed_flag | 1
+host          | qtalk
+
+muc_vcard_info存储群公告, 群名称, 群头像等信息
+muc_pic字段代表群头像地址, 客户端取出字段后将导航里fileurl与之拼接, 构成完整url
+version字段代表修改次数, 用于客户端同步
+
+-[ RECORD 1 ]----+-------------------------------------------------------
+muc_name         | d2b03928439549478c4391ae5772b810@conference.qtalk
+show_name        | 测试用户1,管理员
+muc_desc         | 群公告
+muc_title        | 
+muc_pic          | /file/v2/download/c48d543591c3ba25767a680d927e47a3.png
+show_name_pinyin | ceshiyonghu1guanliyuan|csyh1gly
+update_time      | 2020-09-02 18:25:24.389083+08
+version          | 5
+
+muc_room_history存储聊天信息
+msg_id为每条消息特有的uuid
+id为自增主键, muc_room_name为群id, nick为消息发送者的名称
+pakcet 字段使用xml格式存储消息具体信息, 由message和body两部分组成, 其中
+message属性:
+from: 群id/人
+to: 群id
+sendjid, realfrom,realto,type 等字段用于客人-店铺-店家咨询的模式使用, 平时不会涉及
+msec_times为毫秒级别时间戳
+client_ver及client_type标志发送者使用的客户端和版本号
+body属性:
+id为msg_id
+msgType是消息类型, 每种消息都有特有的消息类型, 客户端将根据消息类型来解析和生成消息
+body内为真正的内容
+
+-[ RECORD 1 ]-+--------------------------------
+muc_room_name | d2b03928439549478c4391ae5772b810
+nick          | testuser1_qtalk
+packet        | <message from='d2b03928439549478c4391ae5772b810@conference.qtalk/testuser1_qtalk' to='d2b03928439549478c4391ae5772b810@conference.qtalk' sendjid='testuser1@qtalk' realfrom='testuser1@qtalk' msec_times='1599042354657' xml:lang='en' type='groupchat' client_type='ClientTypePC' client_ver='200008'><body id='4307c24c6e3d47178b57e70fbb44b357' msgType='1'>asdf</body></message>
+have_subject  | t
+size          | 0
+create_time   | 2020-09-02 18:25:54.657+08
+id            | 11
+host          | qtalk
+msg_id        | 4307c24c6e3d47178b57e70fbb44b357
+
+destroy_muc_info 用于存储销毁的群
+-[ RECORD 1 ]--------------------------------
+muc_name   | ba3fb485109a4301a3441666d796111a
+nick_name  | 销毁群
+reason     | Owner Destroy
+id         | 1
+created_at | 2020-09-02 17:59:50.698467
+
+backup表常用于数据过大, 需要备份时, 或者集群需要调整时使用.
+
+常用sql:
+
+查询用户名为admin的用户当前拥有的群
+SELECT a.username, a.muc_name, b.show_name
+FROM user_register_mucs a
+	RIGHT JOIN muc_vcard_info b
+	ON concat(a.muc_name, '@', a.domain) = b.muc_name
+		AND a.registed_flag = 1
+		AND a.username = 'admin';
+
+查询群id为d2b03928439549478c4391ae5772b810的当前所有群成员
+SELECT concat(a.username, '@', a.host) AS user, b.user_name AS name
+FROM muc_room_users a
+	LEFT JOIN host_users b
+	ON a.username = b.user_id
+		AND a.muc_name = 'd2b03928439549478c4391ae5772b810';
+
+查询群id为d2b03928439549478c4391ae5772b810@qtalk的最近2条发言
+SELECT *
+FROM muc_room_history
+WHERE muc_room_name = 'd2b03928439549478c4391ae5772b810'
+	AND host = 'qtalk'
+ORDER BY id DESC
+LIMIT 2;
+注意:如果要单纯提取消息内容, 需要postgres插件或自行解xml

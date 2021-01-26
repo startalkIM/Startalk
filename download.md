@@ -1,4 +1,31 @@
-
+<div class="layout_nav"><div class="logo"><div class="logo_img"><img src="https://i.startalk.im/home/images/views/layout/logo-head.png" alt="星语"></div> <div class="logo_text"><h1>星语</h1></div></div> <div class="menu"><ul class="menu_bg ivu-menu ivu-menu-light ivu-menu-horizontal"><li class="ivu-menu-item">
+                首页
+            </li> <li class="ivu-menu-item">
+                产品介绍
+            </li> <li class="ivu-menu-item">
+                价格
+            </li> <li class="ivu-menu-submenu"><div class="ivu-menu-submenu-title"><span class="sunmenu">开放平台</span> <i class="ivu-icon ivu-icon-ios-arrow-down ivu-menu-submenu-title-icon"></i></div> <div class="ivu-select-dropdown" style="display: none;"><ul class="ivu-menu-drop-list"> <li class="ivu-menu-item">
+                    开放平台
+                </li> <li class="ivu-menu-item">
+                    接入私有云
+                </li> <li class="ivu-menu-item">
+                    接入公有云
+                </li> <li class="ivu-menu-item">
+                    公有云转私有云
+                </li></ul></div></li> <li class="ivu-menu-submenu"><div class="ivu-menu-submenu-title"><span class="sunmenu">接入指南</span> <i class="ivu-icon ivu-icon-ios-arrow-down ivu-menu-submenu-title-icon"></i></div> <div class="ivu-select-dropdown" style="display: none;"><ul class="ivu-menu-drop-list"> <li class="ivu-menu-item">
+                    如何创建公司
+                </li> <li class="ivu-menu-item">
+                    如何添加公司成员
+                </li> <li class="ivu-menu-item">
+                    如何发送系统消息
+                </li> <li class="ivu-menu-item">
+                    如何配置公司导航
+                </li></ul></div></li> <li class="ivu-menu-item">
+               下载
+            </li> <li class="ivu-menu-item">
+                帮助中心
+            </li> <i class="github ivu-icon ivu-icon-logo-github"></i></ul></div> <!----> <div class="log"><button type="button" class="login ivu-btn ivu-btn-default"><!----> <!----> <span>登录</span></button> <button type="button" class="regist ivu-btn ivu-btn-default"><!----> <!----> <span>注册</span></button></div> <!----> <!----></div>
+            
 ### Startalk 的相关下载资源
 
 这里是所有 Startalk 相关的下载链接，如果无法从 github 获得对应的包，可以从这里下载。

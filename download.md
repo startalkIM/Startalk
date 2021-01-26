@@ -1,34 +1,19 @@
-### 客户端  
 
-[startalk_pc-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/startalk_pc-1.0.0.tar.gz)
+### Startalk 的相关下载资源
 
-```
-md5sum: 27e79032a979d45c4859eed2d15ea076
-```
+这里是所有 Startalk 相关的下载链接，如果无法从 github 获得对应的包，可以从这里下载。
 
-[imsdk-ios-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/imsdk-ios-1.0.0.tar.gz)
+### 客户端 SDK  
 
-```
-md5sum: 2941c484ef8120c312071fb78ff3cda6
-```
+[桌面版本 SDK（Windows/Mac）代码](https://i.startalk.im/pubapi/soft/download/git_projects/client/startalk_pc-1.0.0.tar.gz)  ```md5sum: 27e79032a979d45c4859eed2d15ea076```
 
-[imsdk-android-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/imsdk-android-1.0.0.tar.gz)
+[IOS 平台 SDK 代码](https://i.startalk.im/pubapi/soft/download/git_projects/client/imsdk-ios-1.0.0.tar.gz)  ```md5sum: 2941c484ef8120c312071fb78ff3cda6```
 
-```
-md5sum: fe0f2079a7b089c16ade446dc3e0e102
-```
+[imsdk-android-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/imsdk-android-1.0.0.tar.gz) ``` md5sum: fe0f2079a7b089c16ade446dc3e0e102 ```
 
-[libqimcommoncategories-ios-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/libqimcommoncategories-ios-1.0.0.tar.gz)
+[libqimcommoncategories-ios-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/libqimcommoncategories-ios-1.0.0.tar.gz) ``` md5sum: fb20cdd69ce531f6344a04ceca128a84```
 
-```
-md5sum: fb20cdd69ce531f6344a04ceca128a84
-```
-
-[libqimdatabase-ios-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/libqimdatabase-ios-1.0.0.tar.gz)
-
-```
-md5sum: c70cfa7e2d5fe0d905f130e0eedfbbac
-```
+[libqimdatabase-ios-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/libqimdatabase-ios-1.0.0.tar.gz) ```md5sum: c70cfa7e2d5fe0d905f130e0eedfbbac```
 
 [qimrn-1.0.0.tar.gz](https://i.startalk.im/pubapi/soft/download/git_projects/client/qimrn-1.0.0.tar.gz)
 

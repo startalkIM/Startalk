@@ -128,7 +128,7 @@ $ cd /startalk/download
 $ git clone https://github.com/startalkIM/ejabberd.git
 $ git clone https://github.com/startalkIM/openresty_ng.git
 $ git clone https://github.com/startalkIM/search.git
-
+$ git clone https://github.com/startalkIM/tomcat_projects.git
 $ cp ejabberd/doc/qtalk.sql /startalk/
 $ cp ejabberd/doc/init.sql /startalk/
 $ chmod 777 /startalk/qtalk.sql
@@ -233,7 +233,7 @@ $ make
 $ make install
 
 or安装
-$ cd /startalk/download/or_open
+$ cd /startalk/download/openresty_ng
 $ cp -rf conf /startalk/openresty/nginx
 $ cp -rf lua_app /startalk/openresty/nginx
 
@@ -297,11 +297,11 @@ $ ps -ef | grep 's ejabberd'
 startalk 23515     1  4 09:58 ?        00:00:03 /startalk/erlang1903/lib/erlang/erts-8.3/bin/beam.smp -K true -P 250000 -- -root /startalk/erlang1903/lib/erlang -progname erl -- -home /home/startalk -- -name ejabberd@startalk.com -noshell -noinput -noshell -noinput -mnesia dir "/startalk/ejabberd/var/lib/ejabberd" -ejabberd log_rate_limit 20000 log_rotate_size 504857600 log_rotate_count 41 log_rotate_date "$D0" -s ejabberd -smp auto start
 ```
 
-### 安装java服务(/startalk/download/or_open/deps/tomcat/下的是打好包的三个java服务，自己也可以使用源码打包，然后自己部署)
+### 安装java服务(/startalk/download/tomcat_projects/下的是打好包的三个java服务，自己也可以使用源码打包，然后自己部署)
 
 ```
 $ cd /startalk/download/
-$ cp -rf or_open/deps/tomcat /startalk/
+$ cp -rf tomcat_projects /startalk/tomcat
 $ cd /startalk/tomcat
 
 修改导航地址和扩展键盘：

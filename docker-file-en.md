@@ -22,6 +22,7 @@ There are 2 trials are recommended:
 * [Debian version](https://docs.docker.com/install/linux/docker-ce/debian/)
 * [Other Linux distributions](https://docs.docker.com/install/linux/docker-ce/binaries/)
 
+# Document below is deprecated, please review the latest docker-compose at: https://github.com/startalkIM/startalk-docker-compose  
 
 ### download file
 + Get the resource [file](https://i.startalk.im/pubapi/soft/download/startalk_docker.zip) and extract it:

@@ -22,6 +22,12 @@
 * 注册公共域试用
 * docker部署试用
 
+
+# 最新docker-compose项目:
+https://github.com/startalkIM/startalk-docker-compose
+
+# 以下文档为最初期的startalk-docker部署文档, 已过期  
+
 ## 提前准备
 
 * 客户端

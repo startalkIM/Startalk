@@ -453,41 +453,44 @@ tcp6       0      0 127.0.0.1:8006          :::*                    LISTEN      
 ```
 
 ### 安装后端搜索服务
-```
-#### **准备**：
+
 #### *前提*:
-        openssl version >= 1.02
-        python3.7及以上 
-                https://www.python.org/downloads/source/ 选择最新tar包并下载
-                tar -zxvf Python-3.8.1.tgz
-                cd Python-3.8.1
-                ./configure
-                sudo make && make install
-        pip
-                sudo yum -y install python-pip
-        外网接口/nginx等转发服务
-        postgresql 10，相关字段参考qtalk
-        所需模块见requirements.txt， 建议使用virtualenv部署模块所需环境
-                sudo pip install -U virtualenv （安装virtualenv）
-                sudo pip install --upgrade pip
-                virtualenv --system-site-packages -p python3.8 ./venv （在当前目录下创建venv环境）
-                启动环境
-                source venv/bin/activate
+
+* openssl version >= 1.02
+* python3.7 及以上 https://www.python.org/downloads/source/ 选择最新 tar 包并下载
+```
+tar -zxvf Python-3.8.1.tgz
+cd Python-3.8.1
+./configure
+sudo make && make install
+```
+* pip  ``` sudo yum -y install python-pip ```
+* 外网接口/nginx等转发服务
+* postgresql 10，相关字段参考qtalk
+* 所需模块见requirements.txt， 建议使用virtualenv部署模块所需环境
+```
+sudo pip install -U virtualenv （安装virtualenv）
+sudo pip install --upgrade pip
+virtualenv --system-site-packages -p python3.8 ./venv （在当前目录下创建venv环境）
+```
+* 启动环境
+  ``` source venv/bin/activate```
 
 #### *安装：*:
-        1)配置conf/configure.ini
-        2)pip install -r requirements.txt （推荐新建虚拟环境）
-        3)export PYTHONPATH=path/to/project/qtalk_search:$PYTHONPATH
-        4)cd path/to/project/qtalk_search
-        5)unlink /tmp/supervisor.sock
-        5)supervisord -c conf/supervisor.conf
-        7)supervisorctl -c conf/supervisor.conf reload
+1. 配置conf/configure.ini
+2. pip install -r requirements.txt （推荐新建虚拟环境）
+3. export PYTHONPATH=path/to/project/qtalk_search:$PYTHONPATH
+4. cd path/to/project/qtalk_search
+5. unlink /tmp/supervisor.sock
+6. supervisord -c conf/supervisor.conf
+7. supervisorctl -c conf/supervisor.conf reload
        
 #### *确认服务开启：*:
-        确保日志无报错
-        tail -100f log/access.log
 
-```
+确保日志无报错
+```tail -100f log/access.log```
+
+
 可以执行以下脚本来检查一些常见的错误: 下载该文件[check.sh](https://github.com/startalkIM/openresty_ng/blob/master/tools/check.sh)
 
 ```

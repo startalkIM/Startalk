@@ -317,7 +317,8 @@ flavorDimensions "qim"
 # 系统架构
 
 ## 后端
-
+ ![arch](/image/arch.png)
+ 
 ### 2.0 版本架构图
 
 (暂缺)

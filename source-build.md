@@ -557,6 +557,8 @@ tail -100f /startalk/search/log/access.log
 * openresty 日志：缺省是 `${STARTALK}/openresty/nginx/logs/`, 系统安装包的话，一般是在 `/usr/local/openresty/nginx/logs/`
 * 几个 Java 进程日志：缺省在 `${STARTALK}/tomcat/` 里头，有一些 Java 的应用，比如最重要的是：`${STARTALK}/tomcat/im_http_service/logs/`，可以关注里面的 `catalina.out`，其它还有 `qfproxy` 和 `push_service` 对应的 log 目录。
 
+这些日志路径里有对应的运行日志，如果启动或者其他方面的失败，可以耐心看看这些目录里头的日志文件，里面有不少很有价值的信息。
+
 
 # 问题反馈
 

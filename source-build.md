@@ -551,19 +551,19 @@ tail -100f /startalk/search/log/access.log
 
 大家提交pull request的时候，可以根据不同分支的功能，合并到不同的分支
 
-# wiki地址
+## wiki地址
 
 [wiki页](https://github.com/startalkIM/ejabberd/wiki)
 
-# 配置文件修改
+## 配置文件修改
 
-参考文档[setting.md](doc/setting.md)
+参考文档[setting.md](https://github.com/startalkIM/ejabberd/blob/master/doc/setting.md)
 
-# 接口文档
+#E ejabberd 接口文档
 
-参考文档[interface.md](doc/interface.md)
+参考文档[interface.md](https://github.com/startalkIM/ejabberd/blob/master/doc/interface.md)
 
-# 开发指南
+## 开发指南
 
 - [developer guide](https://docs.ejabberd.im/developer/guide/)
 

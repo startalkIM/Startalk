@@ -3,15 +3,19 @@
 # 本文简介
 这篇文档改自这篇[原始文档](https://github.com/startalkIM/ejabberd/blob/master/README.md)。
 
-源码级部署的目标，并不是提高成功率和易用性，而是帮助理解系统间的调用关系。
-
-我们希望当各组件关系很清晰了之后，再进行调整。
-
+源码级部署的目标，并不是提高成功率和易用性，而是帮助理解系统间的调用关系。我们希望当各组件关系很清晰了之后，再进行调整。
 本文的主要目的是帮助使用者在事实上很复杂的后台部署过程中，减少出错的可能。
 
+# 术语
+
+本文用下面符号表示一些用户可替换的变量：
+
+${STARTALK} 表示 Startalk 的安装路径，缺省是 `/startalk`。
+${STARTALKHOST} 表示 Startalk 的主机名（域名），缺省是 `startalk.com`。
 
 # 系统简介
 通信服务就是个状态机。startalk 后台包括连接保持和无状态服务两部分。
+
 * 状态机 使用[ejabberd](https://www.ejabberd.im/)，保证协议扩展性(MQTT,xmpp,sip)，容量扩展性和高并发。
 * 无状态服务使用java/python，尽可能使二次开发更便捷。
 
@@ -19,50 +23,24 @@
 # Startalk EJABBERD
 
 [English Version](README.en.md)
-
 Startalk 的消息交换服务器是基于 ejabberd 开发的，根据业务需要改造而来。修改和扩展了很多 ejaberd 不支持的功能。
-
-
 
 ## 关键功能
 
 -   分布式：去掉了依赖 mnesia 集群的代码，来支持更大的集群，以及防止由于网络分区导致的集群状态不一致。
--   消息处理：通过ejabberd和kafka相连接，实现了消息的路由和订阅发布，可以对消息添加更丰富的处理逻辑。
+-   消息处理：通过 ejabberd 和 kafka 相连接，实现了消息的路由和订阅发布，可以对消息添加更丰富的处理逻辑。
 
 ## Startalk 模块
-
 ### Startalk 主要包含：
 
-+ [ejabberd](https://github.com/startalkIM/ejabberd)
-
-IM 核心组件，负责维持与客户端的长连接和消息路由
-
-+ [or](https://github.com/startalkIM/openresty_ng)
-
-IM 负载均衡组件，负责验证客户端身份，以及转发http请求到对应的后台服务
-+ [im_http_service](https://github.com/startalkIM/im_http_service)
-
-IM HTTP 接口服务，负责 IM 相关数据的查询、设置以及历史消息同步(基于 tomcat 的 java 服务)
-
-+ [qfproxy](https://github.com/startalkIM/qfproxy)
-
-IM 文件服务，负责文件的上传和下载(基于 tomcat 的 java服务)
-
-+ [push_service](https://github.com/startalkIM/push_service)
-
-IM 的 push 服务，用于离线消息的推送(基于 tomcat 的 java 服务)
-
-+ [qtalk_serach](https://github.com/startalkIM/search)
-
-提供远程搜索人员和群的服务
-
-+ redis
-
-IM缓存服务
-
-+ postgresql
-
-IM数据库服务
+* [ejabberd](https://github.com/startalkIM/ejabberd): IM 核心组件，负责维持与客户端的长连接和消息路由
+* [openresty](https://github.com/startalkIM/openresty_ng): IM 负载均衡组件，负责验证客户端身份，以及转发 http/https 请求到对应的后台服务
+* [im_http_service](https://github.com/startalkIM/im_http_service): IM HTTP 接口服务，负责 IM 相关数据的查询、设置以及历史消息同步(基于 tomcat 的 java 服务)
+* [qfproxy](https://github.com/startalkIM/qfproxy): IM 文件服务，负责文件的上传和下载(基于 tomcat 的 java服务)
+* [push_service](https://github.com/startalkIM/push_service): IM 的 push 服务，用于离线消息的推送(基于 tomcat 的 java 服务)
+* [qtalk_serach](https://github.com/startalkIM/search): 提供远程搜索人员和群的服务
+* redis: IM 缓存服务
+* postgresql: IM 数据库服务
 
 ### Startalk 各个模块之间的关系
 
@@ -95,20 +73,20 @@ IM数据库服务
 
 预设条件(如果主机名，用户名和这里的不一致，则需要将安装步骤中的换成自己的名字)：
 
-+ 服务器要求：centos7.x
-+ 主机名用变量 STARTALK，可以替换成自己的主机名
-+ hosts 添加： 127.0.0.1 ${STARTALK} (sudo vim /etc/hosts)
-+ 所有项目都安装到 /startalk 下面
-+ 安装用户和用户组是：startalk:startalk，要保证 startalk 用户有 sudo 权限
-+ 家目录下有 download 文件夹，所有文件会下载到该文件夹下
-+ 数据库用户名密码是 ejabberd:123456，服务地址是：127.0.0.1
-+ redis 密码是：123456，服务地址是：127.0.0.1
-+ 数据库初始化 sql 在 doc 目录下
-+ 保证可访问主机的：5202、8080 端口（关掉防火墙：`sudo systemctl stop firewalld.service`）
-+ IM 服务的域名是:startalk(大家安装线上之前，最好确定好这个值，一旦定了，之后修改的成本就很高，可以参考[domain 修改](https://github.com/startalkIM/ejabberd/wiki/host%E4%BF%AE%E6%94%B9)来修改)
-+ tls 证书：默认安装用的是一个测试证书，线上使用，请更换 /startalk/ejabberd/etc/ejabberd/server.pem 文件，生成方法见 [securing-ejabberd-with-tls-encryption](https://blog.process-one.net/securing-ejabberd-with-tls-encryption/)
-+ 出现文件覆盖提示时，输入 yes 敲回车即可
-+ 安装文档中 # 开头输入的命令表示 root 执行的，$ 开头的命令表示普通用户
+* 服务器要求：centos7.x
+* 主机名用变量 STARTALKHOST，可以替换成自己的主机名
+* hosts 添加： 127.0.0.1 ${STARTALKHOST} (sudo vim /etc/hosts)
+* 所有项目都安装到 ${STARTALK} 下面
+* 安装用户和用户组是：startalk:startalk，要保证 startalk 用户有 sudo 权限
+* 家目录下有 download 文件夹，所有文件会下载到该文件夹下
+* 数据库用户名密码是 ejabberd:123456，服务地址是：127.0.0.1
+* redis 密码是：123456，服务地址是：127.0.0.1
+* 数据库初始化 sql 在 doc 目录下
+* 保证可访问主机的：5202、8080 端口（关掉防火墙：`sudo systemctl stop firewalld.service`）
+* IM 服务的域名是: ${STARTALKHOST} (大家安装线上之前，最好确定好这个值，一旦定了，之后修改的成本就很高，可以参考[domain 修改](https://github.com/startalkIM/ejabberd/wiki/host%E4%BF%AE%E6%94%B9)来修改)
+* tls 证书：默认安装用的是一个测试证书，线上使用，请更换 /startalk/ejabberd/etc/ejabberd/server.pem 文件，生成方法见 [securing-ejabberd-with-tls-encryption](https://blog.process-one.net/securing-ejabberd-with-tls-encryption/)
+* 出现文件覆盖提示时，输入 yes 敲回车即可
+* 安装文档中 # 开头输入的命令表示 root 执行的，$ 开头的命令表示普通用户
 
 ### 依赖包
 
@@ -218,7 +196,9 @@ maxmemory 134217728
 ```
 $ sudo redis-server /etc/redis.conf
 ``` 
+
 确认启动成功：
+
 ```
 $ sudo netstat -antlp | grep 6379
 tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN      8813/redis-server 1
@@ -238,8 +218,6 @@ sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-
 ```
  sudo yum install -y postgresql12-server
 ```
-
-
 
 在 CentOS 7 里，用预编译包安装完 postgresql 之后，可执行文件在 `/usr/pgsql-12/bin` 目录下，基本所有命令无序特殊路径设置。
 
@@ -346,6 +324,7 @@ $ make install
 ```
 
 把执行路径添加到 PATH 环境变量
+
 ```
 $ vim ~/.bash_profile
  
@@ -459,9 +438,9 @@ tcp6       0      0 127.0.0.1:8006          :::*                    LISTEN      
 
 ### 安装后端搜索服务
 
-#### 前提:
-* openssl version >= 1.02
-* python3.7及以上, 以3.9.2为例
+#### 前提
++ openssl version >= 1.02
++ python3.7 及以上, 以3.9.2为例
 ```
         cd /startalk/download && wget https://www.python.org/ftp/python/3.9.2/Python-3.9.2.tgz
         tar -zxvf Python-3.9.2.tgz
@@ -469,7 +448,8 @@ tcp6       0      0 127.0.0.1:8006          :::*                    LISTEN      
         ./configure --prefix=/startalk/python392
         make && make install
 ```
-* 添加到bash_profile
+* 添加到 `.bash_profile`
+* 
 ```
 vim ~/.bash_profile
         PYTHONPATH=/startalk/python392
@@ -551,22 +531,36 @@ tail -100f /startalk/search/log/access.log
 
 大家提交pull request的时候，可以根据不同分支的功能，合并到不同的分支
 
-## wiki地址
+## ejabberd 相关 wiki地址
 
 [wiki页](https://github.com/startalkIM/ejabberd/wiki)
-## 配置文件修改
 
-参考文档[setting.md](doc/setting.md)
+## ejabberd 配置文件修改
 
-## 接口文档
+参考文档 [setting.md](https://github.com/startalkIM/ejabberd/blob/master/doc/setting.md)
 
-参考文档[interface.md](doc/interface.md)
+## ejabberd 接口文档
+
+参考文档 [interface.md](https://github.com/startalkIM/ejabberd/blob/master/doc/interface.md)
 
 ## 开发指南
 
 - [developer guide](https://docs.ejabberd.im/developer/guide/)
 
-## 问题反馈
+## 日志路径
+
+整个系统运行有如下日志可以供参考：
+
+* postgresql 数据库日志：缺省输出到标准输出，请参考 postgresql 配置文件修改配置（缺省是 ${STARTALK}/database/postgresql.conf），将其定向到合适的路径
+* redis 日志：系统安装的话缺省是：`/var/log/redis/redis.log`，若自己编译安装请自行查找位置
+* ejabberd 日志：缺省是 `${STARTALK}/ejabberd/var/log/ejabberd/`
+* openresty 日志：缺省是 `${STARTALK}/openresty/nginx/logs/`, 系统安装包的话，一般是在 `/usr/local/openresty/nginx/logs/`
+* 几个 Java 进程日志：缺省在 `${STARTALK}/tomcat/` 里头，有一些 Java 的应用，比如最重要的是：`${STARTALK}/tomcat/im_http_service/logs/`，可以关注里面的 `catalina.out`，其它还有 `qfproxy` 和 `push_service` 对应的 log 目录。
+
+这些日志路径里有对应的运行日志，如果启动或者其他方面的失败，可以耐心看看这些目录里头的日志文件，里面有不少很有价值的信息。
+
+
+# 问题反馈
 
 - app@startalk.im（邮件）
 - 1065751631（QQ群）

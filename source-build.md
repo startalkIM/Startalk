@@ -549,6 +549,13 @@ tail -100f /startalk/search/log/access.log
 
 ## 日志路径
 
+整个系统运行有如下日志可以供参考：
+
+* postgresql 数据库日志：缺省输出到标准输出，请参考 postgresql 配置文件修改配置（缺省是 ${STARTALK}/database/postgresql.conf），将其定向到合适的路径
+* redis 日志：系统安装的话缺省是：`/var/log/redis/redis.log`，若自己编译安装请自行查找位置
+* ejabberd 日志：缺省是 `${STARTALK}/ejabberd/var/log/ejabberd/`
+* openresty 日志：缺省是 `${STARTALK}/openresty/nginx/logs/`, 系统安装包的话，一般是在 `/usr/local/openresty/nginx/logs/`
+* 几个 Java 进程日志：缺省在 `${STARTALK}/tomcat/` 里头，有一些 Java 的应用，比如最重要的是：`${STARTALK}/tomcat/im_http_service/logs/`，可以关注里面的 `catalina.out`，其它还有 `qfproxy` 和 `push_service` 对应的 log 目录。
 
 
 # 问题反馈
